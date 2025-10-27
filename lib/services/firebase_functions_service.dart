@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hydrify/helpers/shared_pref_helper.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'dart:convert';
@@ -116,6 +117,7 @@ class FirebaseFunctionsService {
       // Log authentication tokens
       log('Access Token: ${googleAuth.accessToken}');
       log('ID Token: ${googleAuth.idToken}');
+      SharedPrefsHelper.setUserEmail(googleUser.email);
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,

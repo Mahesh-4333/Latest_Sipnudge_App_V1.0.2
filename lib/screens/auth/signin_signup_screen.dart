@@ -113,7 +113,7 @@ class _SigninSignupScreenState extends State<SigninSignupScreen> {
                 SizedBox(
                   height: AppDimensions.dim15.h,
                 ),
-                // _buildSSOButtons(),
+                _buildSSOButtons(),
               ],
             ),
           ),
