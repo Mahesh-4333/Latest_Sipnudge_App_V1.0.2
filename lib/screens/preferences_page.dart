@@ -281,7 +281,6 @@ import 'package:hydrify/cubit/Preferences/preferences_cubit.dart';
 import 'package:hydrify/screens/user_info_daily_goal_screen.dart';
 import 'package:hydrify/screens/widgets/animated_bottom_navbar_widget.dart';
 // import 'package:hydrify/screens/widgets/FaQ_Widgets/faq_widgets.dart';
-import 'package:hydrify/screens/widgets/account&security_widgets/toggle_state_widget.dart';
 // import 'package:hydrify/screens/widgets/navigation_helper.dart';
 import 'package:hydrify/screens/widgets/preferences_widgets/menu_item_tile.dart';
 

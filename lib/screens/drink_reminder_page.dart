@@ -13,9 +13,8 @@ import 'package:hydrify/screens/custom_bttom_sheet_rm.dart';
 import 'package:hydrify/screens/widgets/animated_bottom_navbar_widget.dart';
 // import 'package:hydrify/screens/widgets/FaQ_Widgets/faq_widgets.dart';
 import 'package:hydrify/screens/widgets/drinkreminder_widget/reminder_card.dart';
-import 'package:hydrify/screens/widgets/drinkreminder_widget/reminder_cycle_item.dart';
 import 'package:hydrify/screens/widgets/drinkreminder_widget/reminder_list_item.dart';
-import 'package:hydrify/screens/widgets/drinkreminder_widget/reminder_toggle_row.dart';
+
 // import 'package:hydrify/screens/widgets/navigation_helper.dart';
 
 class DrinkReminderPage extends StatelessWidget {

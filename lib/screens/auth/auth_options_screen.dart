@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hydrify/constants/app_colors.dart';
@@ -8,7 +7,6 @@ import 'package:hydrify/constants/app_font_styles.dart';
 import 'package:hydrify/constants/app_strings.dart';
 import 'package:hydrify/helpers/shared_pref_helper.dart';
 import 'package:hydrify/screens/auth/signin_signup_screen.dart';
-import 'package:hydrify/screens/bottom_nav_screen_new.dart';
 import 'package:hydrify/screens/info/privacy_policy_screen.dart';
 import 'package:hydrify/screens/info/terms_of_service.dart';
 import 'package:hydrify/screens/user_personal_info_input_screen..dart';

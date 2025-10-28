@@ -7,10 +7,8 @@ import 'package:hydrify/constants/app_font_styles.dart';
 import 'package:hydrify/constants/app_strings.dart';
 import 'package:hydrify/cubit/profile_screen_in_setting/profile_cubit.dart';
 import 'package:hydrify/cubit/profile_screen_in_setting/profile_state.dart';
-import 'package:hydrify/screens/widgets/FaQ_Widgets/faq_widgets.dart';
 import 'package:hydrify/screens/widgets/level_widgets/bottom_nav_bar.dart';
 import 'package:hydrify/screens/widgets/navigation_helper.dart';
-import 'package:hydrify/screens/widgets/profile_screen_inSetting/profile_menu_item.dart';
 import 'package:hydrify/screens/widgets/setting_screen_widget/profile_menu_item.dart';
 
 class ProfileScreenPage extends StatelessWidget {

@@ -15,7 +15,7 @@ import 'package:hydrify/services/ui_utils_service.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
-  OtpVerificationScreen({
+  const OtpVerificationScreen({
     super.key,
     required this.userEmail,
     this.isResetPassFlow = false,
@@ -95,7 +95,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     if (enteredOtp.isNotEmpty) {
       UiUtilsService.showLoading(context, "Verifying OTP");
 
-      var response;
+      Map<String, dynamic> response;
       if (widget.isResetPassFlow) {
         response = await FirebaseFunctionsService.verifyResetOTPOnly(
           widget.userEmail,

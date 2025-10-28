@@ -50,7 +50,7 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) {
-              if (loggedInUserEmail != null && loggedInUserEmail.isNotEmpty) {
+              if (loggedInUserEmail.isNotEmpty) {
                 if (hasUserFilledInPersonalInfo == true &&
                     hasUserSelectedPersonalGoal != null) {
                   return BottomNavScreenNew();

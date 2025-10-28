@@ -7,8 +7,6 @@ import 'package:hydrify/constants/app_font_styles.dart';
 import 'package:hydrify/constants/app_strings.dart';
 import 'package:hydrify/cubit/reminder%20time&mode/reminder_time_interval_cubit.dart';
 import 'package:hydrify/cubit/reminder%20time&mode/reminder_time_interval_state.dart';
-import 'package:hydrify/screens/reminder_timeinterval_bottom_sheet.dart';
-import '../cubit/reminder time&mode/reminder_cubit.dart';
 
 class IntervalBottomSheet extends StatelessWidget {
   const IntervalBottomSheet({super.key});

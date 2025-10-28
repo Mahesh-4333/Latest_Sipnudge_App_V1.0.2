@@ -1,15 +1,11 @@
-import 'dart:async';
+
 import 'dart:developer';
 import 'dart:math' hide log;
 import 'dart:ui';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:glassmorphism/glassmorphism.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:hydrify/constants/app_colors.dart';
 import 'package:hydrify/constants/app_dimensions.dart';
@@ -18,27 +14,22 @@ import 'package:hydrify/constants/app_strings.dart';
 import 'package:hydrify/cubit/ble/ble_cubit.dart';
 import 'package:hydrify/cubit/bottle/bottle_data_cubit.dart';
 import 'package:hydrify/cubit/hydration/hydration_cubit.dart';
-import 'package:hydrify/helpers/data_verification_helper.dart';
 import 'package:hydrify/helpers/shared_pref_helper.dart';
 import 'package:hydrify/helpers/water_consumption_data_helper.dart';
-import 'package:hydrify/models/bottle_data.dart';
 import 'package:hydrify/models/hydration_entry.dart';
-import 'package:hydrify/providers/authentication_provider.dart';
 import 'package:hydrify/providers/weather_provider.dart';
 
 import 'package:hydrify/screens/widgets/ble_device_selection_sheet.dart';
 import 'package:hydrify/screens/widgets/custom_circular_loader/custom_circular_progress_indicator.dart';
 import 'package:hydrify/screens/widgets/greeting_widget.dart';
 import 'package:hydrify/screens/widgets/user_info_input_widgets/custom_beating_ble_status_indicator.dart';
-import 'package:hydrify/screens/widgets/water_level_indicator.dart';
 import 'package:hydrify/screens/widgets/water_wave_widget.dart';
-import 'package:hydrify/services/ui_utils_service.dart';
-import 'package:intl/intl.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -465,7 +456,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 children: [
                   // Wrap SvgPicture.asset with error handling
-                  Container(
+                  SizedBox(
                     height: AppDimensions.dim45.h,
                     width: AppDimensions.dim45.h, // Add width for debugging
 
