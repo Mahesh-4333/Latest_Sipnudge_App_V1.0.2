@@ -26,8 +26,10 @@ class _GreetingWidgetState extends State<GreetingWidget> {
   }
 
   Future<void> _loadUserName() async {
-    final userEmail = await SharedPrefsHelper.getUserEmail();
-    final name = DataVerifcationHelper.extractNameFromEmail(userEmail!);
+    final userEmail = await SharedPrefsHelper.getUserEmail() ?? "";
+    final name = userEmail.isEmpty
+        ? ""
+        : DataVerifcationHelper.extractNameFromEmail(userEmail);
     setState(() {
       _userName = name;
     });

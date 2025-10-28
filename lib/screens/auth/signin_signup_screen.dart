@@ -591,12 +591,13 @@ class _SigninSignupScreenState extends State<SigninSignupScreen> {
                 onTap: () async {
                   UiUtilsService.showLoading(
                       context, "Signing you in via Apple");
+
                   var signInWithAppleRes =
                       await FirebaseFunctionsService.signInWithApple();
+
                   UiUtilsService.dismissLoading(context);
-                  if (signInWithAppleRes != null) {
-                    SharedPrefsHelper.setUserEmail(
-                        signInWithAppleRes.user?.email ?? "email");
+
+                  if (signInWithAppleRes['success'] == true) {
                     UiUtilsService.showToast(
                         context: context, text: "Signin Successful");
 
@@ -607,6 +608,11 @@ class _SigninSignupScreenState extends State<SigninSignupScreen> {
                       ),
                       (route) => false,
                     );
+                  } else {
+                    UiUtilsService.showToast(
+                        context: context,
+                        text: signInWithAppleRes['message'] ??
+                            'Apple Sign-In failed');
                   }
                 },
               ),

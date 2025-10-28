@@ -154,8 +154,16 @@ class FirebaseFunctionsService {
     }
   }
 
-  static Future<UserCredential?> signInWithApple() async {
+  static Future<Map<String, dynamic>> signInWithApple() async {
     try {
+      if (!await SignInWithApple.isAvailable()) {
+        log('Apple Sign-In is not available on this device/simulator');
+        return {
+          'success': false,
+          'message': 'Apple Sign-In is not available on this device'
+        };
+      }
+
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
@@ -163,7 +171,6 @@ class FirebaseFunctionsService {
         ],
       );
 
-      // Log Apple credential information
       log('=== APPLE SIGN-IN DATA ===');
       log('User Identifier: ${appleCredential.userIdentifier}');
       log('Given Name: ${appleCredential.givenName}');
@@ -181,7 +188,6 @@ class FirebaseFunctionsService {
       final userCredential =
           await FirebaseAuth.instance.signInWithCredential(oauthCredential);
 
-      // Log Firebase user information
       final user = userCredential.user;
       if (user != null) {
         log('=== FIREBASE USER DATA (Apple) ===');
@@ -199,12 +205,37 @@ class FirebaseFunctionsService {
               'displayName': p.displayName,
               'photoURL': p.photoURL
             }).toList()}');
+
+        String userEmail = user.email ?? appleCredential.email ?? "";
+        SharedPrefsHelper.setUserEmail(userEmail);
       }
 
-      return userCredential;
+      return {
+        'success': true,
+        'userCredential': userCredential,
+        'message': 'Sign-in successful'
+      };
     } catch (e) {
       log('Apple Sign-In Error: $e');
-      return null;
+
+      String errorMessage = 'Apple Sign-In failed. Please try again.';
+
+      if (e.toString().contains('canceled') ||
+          e.toString().contains('CANCELED')) {
+        errorMessage = 'Sign-in was canceled';
+      } else if (e.toString().contains('network') ||
+          e.toString().contains('Network')) {
+        errorMessage = 'Network error. Please check your connection.';
+      } else if (e.toString().contains('invalid_grant')) {
+        errorMessage = 'Invalid credentials. Please try signing in again.';
+      } else if (e.toString().contains('not_supported')) {
+        errorMessage = 'Apple Sign-In is not supported on this device.';
+      } else if (e.toString().contains('invalid-credential') ||
+          e.toString().contains('audience')) {
+        errorMessage = 'Configuration error. Please contact support.';
+      }
+
+      return {'success': false, 'message': errorMessage};
     }
   }
 

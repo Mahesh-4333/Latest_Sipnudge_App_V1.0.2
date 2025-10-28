@@ -1,5 +1,6 @@
 // // logout_bottom_sheet.dart
 
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ import 'package:hydrify/constants/app_dimensions.dart';
 import 'package:hydrify/constants/app_font_styles.dart';
 import 'package:hydrify/constants/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hydrify/screens/auth/local_auth_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LogoutBottomSheet extends StatelessWidget {
@@ -127,6 +129,18 @@ class LogoutBottomSheet extends StatelessWidget {
                             await prefs.clear();
 
                             // 3️⃣ Close app
+                            if (Platform.isIOS) {
+                              // 3️⃣ Navigate to login screen (iOS compatible)
+                              if (context.mounted) {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        LocalAuthScreen(), // Replace with your actual login screen
+                                  ),
+                                  (route) => false,
+                                );
+                              }
+                            }
                             SystemNavigator.pop();
                           } catch (e) {
                             // Optional: show error toast

@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>312198031425-k6b4j9vp20abqtitijct96b148vgt2tl.apps.googleusercontent.com</string>
+	<string>312198031425-spufcbh3ultavln69ncu5e0kgm9lji46.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.312198031425-k6b4j9vp20abqtitijct96b148vgt2tl</string>
+	<string>com.googleusercontent.apps.312198031425-spufcbh3ultavln69ncu5e0kgm9lji46</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>312198031425-7481cc9cgvr5p6lp96he6v8qh7ofshq4.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBd8I_10SKhNwiyXcoYeOJ2vMo9iDJqNyg</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.sipnudge.sipnudge</string>
+	<string>com.sipnudge.sipnudgeV2x10</string>
 	<key>PROJECT_ID</key>
 	<string>sipnudge-7c920</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:312198031425:ios:3c64728fb8861613bb3ec0</string>
+	<string>1:312198031425:ios:8b71b4cbdd18e00cbb3ec0</string>
 </dict>
 </plist>

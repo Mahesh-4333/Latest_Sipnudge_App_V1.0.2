@@ -35,7 +35,7 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
         Provider.of<AuthenticationProvider>(context, listen: false);
 
     final success = await authProvider.authenticateWithBiometrics();
-    final loggedInUserEmail = await SharedPrefsHelper.getUserEmail();
+    final loggedInUserEmail = await SharedPrefsHelper.getUserEmail() ?? "";
     final hasUserFilledInPersonalInfo =
         await SharedPrefsHelper.isPersonalInfoSubmitted();
     final hasUserSelectedPersonalGoal = await SharedPrefsHelper.getUserGoal();
@@ -50,7 +50,7 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) {
-              if (loggedInUserEmail != null) {
+              if (loggedInUserEmail != null && loggedInUserEmail.isNotEmpty) {
                 if (hasUserFilledInPersonalInfo == true &&
                     hasUserSelectedPersonalGoal != null) {
                   return BottomNavScreenNew();
