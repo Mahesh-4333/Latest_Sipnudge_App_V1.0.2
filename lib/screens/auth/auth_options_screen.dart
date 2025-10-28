@@ -99,103 +99,70 @@ class _AuthOptionsScreenState extends State<AuthOptionsScreen> {
               SizedBox(
                 height: AppDimensions.dim33.h,
               ),
-              // AuthButton(
-              //   iconPath: "assets/images/google_ic.svg",
-              //   text: AppStrings.continueWithGoogle,
-              //   color: AppColors.white,
-              //   onTap: () async {
-              //     UiUtilsService.showLoading(
-              //         context, "Signing you in via Google");
-              //     var signInWithGoogleRes =
-              //         await FirebaseFunctionsService.signInWithGoogle();
-              //     UiUtilsService.dismissLoading(context);
-              //     if (signInWithGoogleRes != null) {
-              //       SharedPrefsHelper.setUserEmail(
-              //           signInWithGoogleRes.user?.email ?? "");
-              //       UiUtilsService.showToast(
-              //           context: context, text: "Signin Successful");
+              AuthButton(
+                iconPath: "assets/images/google_ic.svg",
+                text: AppStrings.continueWithGoogle,
+                color: AppColors.white,
+                onTap: () async {
+                  UiUtilsService.showLoading(
+                      context, "Signing you in via Google");
+                  var signInWithGoogleRes =
+                      await FirebaseFunctionsService.signInWithGoogle();
+                  UiUtilsService.dismissLoading(context);
+                  if (signInWithGoogleRes != null) {
+                    SharedPrefsHelper.setUserEmail(
+                        signInWithGoogleRes.user?.email ?? "");
+                    UiUtilsService.showToast(
+                        context: context, text: "Signin Successful");
 
-              //       Navigator.pushAndRemoveUntil(
-              //         context,
-              //         MaterialPageRoute(
-              //           builder: (context) => UserInfoInputScreen(),
-              //         ),
-              //         (route) => false,
-              //       );
-              //     }
-              //   },
-              // ),
-              // Visibility(
-              //   visible: Platform.isIOS,
-              //   child: Column(
-              //     children: [
-              //       SizedBox(height: AppDimensions.dim20.h),
-              //       AuthButton(
-              //         iconPath: "assets/images/apple_ic.svg",
-              //         text: AppStrings.continueWithApple,
-              //         color: AppColors.white,
-              //         onTap: () async {
-              //           UiUtilsService.showLoading(
-              //               context, "Signing you in via Apple");
-              //           var signInWithAppleRes =
-              //               await FirebaseFunctionsService.signInWithApple();
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UserInfoInputScreen(),
+                      ),
+                      (route) => false,
+                    );
+                  }
+                },
+              ),
+              Visibility(
+                visible: Platform.isIOS,
+                child: Column(
+                  children: [
+                    SizedBox(height: AppDimensions.dim20.h),
+                    AuthButton(
+                      iconPath: "assets/images/apple_ic.svg",
+                      text: AppStrings.continueWithApple,
+                      color: AppColors.white,
+                      onTap: () async {
+                        UiUtilsService.showLoading(
+                            context, "Signing you in via Apple");
+                        var signInWithAppleRes =
+                            await FirebaseFunctionsService.signInWithApple();
 
-              //           UiUtilsService.dismissLoading(context);
-              //           if (signInWithAppleRes != null) {
-              //             SharedPrefsHelper.setUserEmail(
-              //                 signInWithAppleRes.user?.email ?? "");
-              //             UiUtilsService.showToast(
-              //                 context: context, text: "Signin Successful");
+                        UiUtilsService.dismissLoading(context);
+                        if (signInWithAppleRes['success'] == true) {
+                          UiUtilsService.showToast(
+                              context: context, text: "Signin Successful");
 
-              //             var response = await FirebaseFunctionsService
-              //                 .checkUserFromGoogleOrApple(
-              //                     signInWithAppleRes.user?.email ?? "");
-              //             if (response["status"] == "success" &&
-              //                 response["statusCode"] == 200) {
-              //               var waterIntake = response["data"]
-              //                   ["water_intake_data"]["water_intake"];
-
-              //               if (waterIntake == null) {
-              //                 Navigator.pushAndRemoveUntil(
-              //                   context,
-              //                   MaterialPageRoute(
-              //                     builder: (context) => UserInfoInputScreen(),
-              //                   ),
-              //                   (route) => false,
-              //                 );
-              //               } else {
-              //                 await SharedPrefsHelper.setWaterGoal(waterIntake);
-              //                 final hasUserFilledInPersonalInfo =
-              //                     await SharedPrefsHelper
-              //                         .isPersonalInfoSubmitted();
-              //                 final hasUserSelectedPersonalGoal =
-              //                     await SharedPrefsHelper.getUserGoal();
-              //                 if (hasUserFilledInPersonalInfo &&
-              //                     hasUserSelectedPersonalGoal != null) {
-              //                   Navigator.pushAndRemoveUntil(
-              //                     context,
-              //                     MaterialPageRoute(
-              //                       builder: (context) => BottomNavScreenNew(),
-              //                     ),
-              //                     (route) => false,
-              //                   );
-              //                 } else {
-              //                   Navigator.pushAndRemoveUntil(
-              //                     context,
-              //                     MaterialPageRoute(
-              //                       builder: (context) => UserInfoInputScreen(),
-              //                     ),
-              //                     (route) => false,
-              //                   );
-              //                 }
-              //               }
-              //             }
-              //           }
-              //         },
-              //       ),
-              //     ],
-              //   ),
-              // ),
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UserInfoInputScreen(),
+                            ),
+                            (route) => false,
+                          );
+                        } else {
+                          UiUtilsService.showToast(
+                              context: context,
+                              text: signInWithAppleRes['message'] ??
+                                  'Apple Sign-In failed');
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: AppDimensions.dim37.h),
               AuthButton(
                 text: AppStrings.signUp,
