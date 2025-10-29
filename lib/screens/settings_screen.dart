@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hydrify/services/user_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:hydrify/constants/app_colors.dart';
@@ -33,14 +34,12 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   Future<void> _loadSavedName() async {
-    final prefs = await SharedPreferences.getInstance();
-    final savedName = prefs.getString(_userNameKey);
-    _nameController.text = savedName ?? AppStrings.newtonsingh;
+    final name = UserManager().userName;
+    _nameController.text = name.isNotEmpty ? name : AppStrings.newtonsingh;
   }
 
   void _saveNameLocally(String name) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_userNameKey, name);
+    await UserManager().setUserName(name);
   }
 
   @override

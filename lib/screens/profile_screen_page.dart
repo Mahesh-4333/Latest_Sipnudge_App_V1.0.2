@@ -10,6 +10,7 @@ import 'package:hydrify/cubit/profile_screen_in_setting/profile_state.dart';
 import 'package:hydrify/screens/widgets/level_widgets/bottom_nav_bar.dart';
 import 'package:hydrify/screens/widgets/navigation_helper.dart';
 import 'package:hydrify/screens/widgets/setting_screen_widget/profile_menu_item.dart';
+import 'package:hydrify/services/user_manager.dart';
 
 class ProfileScreenPage extends StatelessWidget {
   const ProfileScreenPage({super.key});
@@ -150,7 +151,9 @@ class ProfileScreenPage extends StatelessWidget {
                         ),
                         SizedBox(width: AppDimensions.dim16.w),
                         Text(
-                          AppStrings.newtonsingh,
+                          UserManager().userName.isNotEmpty
+                              ? UserManager().userName
+                              : AppStrings.newtonsingh,
                           style: TextStyle(
                             color: AppColors.white,
                             fontSize: AppFontStyles.fontSize_18.sp,

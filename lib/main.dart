@@ -49,6 +49,7 @@ import 'package:hydrify/screens/user_info_daily_goal_screen.dart';
 import 'package:hydrify/screens/water_intake_timeline_screen.dart';
 import 'package:hydrify/services/location_service.dart';
 import 'package:hydrify/services/notification_service.dart';
+import 'package:hydrify/services/user_manager.dart';
 import 'package:hydrify/services/weather_service.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -78,6 +79,9 @@ Future<void> main() async {
 
   final notificationService = NotificationService();
   await notificationService.init();
+
+  // Initialize UserManager
+  await UserManager().init();
 
   runApp(
     MyApp(

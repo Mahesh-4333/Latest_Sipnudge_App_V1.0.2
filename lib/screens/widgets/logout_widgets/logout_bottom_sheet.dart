@@ -11,6 +11,7 @@ import 'package:hydrify/constants/app_font_styles.dart';
 import 'package:hydrify/constants/app_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hydrify/screens/auth/local_auth_screen.dart';
+import 'package:hydrify/services/user_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LogoutBottomSheet extends StatelessWidget {
@@ -123,6 +124,7 @@ class LogoutBottomSheet extends StatelessWidget {
                           try {
                             // 1️⃣ Firebase logout
                             await FirebaseAuth.instance.signOut();
+                            await UserManager().clear();
 
                             // 2️⃣ Clear local session
                             final prefs = await SharedPreferences.getInstance();
